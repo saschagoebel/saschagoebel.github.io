@@ -1,5 +1,4 @@
 safe: true
-auto: true
 future: false
 pygments: true
 permalink: /:categories/:year/:month/:title/

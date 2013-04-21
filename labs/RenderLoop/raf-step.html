@@ -1,0 +1,31 @@
+---
+layout: default
+title: RenderLoop Benchmark
+---
+<p>requestAnimationFrame capped to 20 FPS using step - only render each 3rd step, assuming the refresh rate is 60Hz, which is already questionable, as most monitors run at 50Hz.</p>
+
+<canvas id="mainCanvas" width="320" height="240" style="border: 1px dotted #b5e853; "></canvas>
+
+<script src="shared.js"></script>
+
+<script>
+
+  var step = 0;
+
+  function renderLoop() {
+
+    if (++step > 2) {
+      updateFPS();
+      renderContent();
+      step = 0;
+    }
+
+    requestAnimationFrame(renderLoop);
+  }
+
+  renderLoop();
+
+</script>
+
+<p><a href="index.html">Back to Overview</a></p>
+

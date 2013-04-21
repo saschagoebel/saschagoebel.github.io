@@ -1,0 +1,24 @@
+---
+layout: default
+title: RenderLoop Benchmark
+---
+<p>requestAnimationFrame uncapped - running as fast as possible</p>
+
+<canvas id="mainCanvas" width="320" height="240" style="border: 1px dotted #b5e853; "></canvas>
+
+<script src="shared.js"></script>
+
+<script>
+
+  function renderLoop() {
+    updateFPS();
+    renderContent();
+    requestAnimationFrame(renderLoop);
+  }
+
+  renderLoop();
+
+</script>
+
+<p><a href="index.html">Back to Overview</a></p>
+

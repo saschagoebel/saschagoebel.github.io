@@ -1,0 +1,33 @@
+---
+layout: default
+title: RenderLoop Benchmark
+---
+<p>requestAnimationFrame capped to 20 FPS using time - only run each 1/20 second at most</p>
+
+<canvas id="mainCanvas" width="320" height="240" style="border: 1px dotted #b5e853; "></canvas>
+
+<script src="shared.js"></script>
+
+<script>
+
+  var capTime = 1000/20;
+  var capNow = Date.now();
+  var capLast = capNow;
+
+  function renderLoop() {
+    capNow = Date.now();
+    if (capNow - capLast > capTime) {
+      updateFPS();
+      renderContent();
+      capLast = capNow;
+    }
+
+    requestAnimationFrame(renderLoop);
+  }
+
+  renderLoop();
+
+</script>
+
+<p><a href="index.html">Back to Overview</a></p>
+

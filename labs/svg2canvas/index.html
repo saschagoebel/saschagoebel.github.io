@@ -1,0 +1,25 @@
+---
+layout: default
+title: SVG2Canvas
+---
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="fabric.js"></script>
+
+<canvas id="screen" width="500" height="500" style="outline: 1px solid black; ">
+
+<script>
+  var canvas = new fabric.Canvas(document.getElementById('screen'));
+
+  jQuery.get('test_002.svg', function(svgString) {
+
+    fabric.loadSVGFromString(svgString, function(objects, options) {
+      var obj = fabric.util.groupSVGElements(objects, options);
+      obj.set({left: Math.floor(canvas.width / 2), top: Math.floor(canvas.height / 2)});
+      canvas.add(obj).renderAll();
+
+      var imageData = canvas.toDataURL();
+
+      $('#content').append('<img src="' + imageData + '" />');
+    });
+  });
+</script>
